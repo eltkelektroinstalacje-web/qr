@@ -1,18 +1,56 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TEST QR</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR – Narzędzia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 40px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 12px 18px;
+      background: #1a73e8;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
-  <h1>GITHUB PAGES DZIAŁA</h1>
-  <p id="out"></p>
+
+  <p id="msg">⏳ Przekierowanie do formularza…</p>
 
   <script>
-    const p = new URLSearchParams(window.location.search);
-    document.getElementById("out").innerText =
-      "tool = " + p.get("tool");
+    const params = new URLSearchParams(window.location.search);
+    const tool = params.get("tool");
+
+    const FORM_URL =
+      "https://docs.google.com/forms/d/e/1FAIpQLSd-HGEpcVM5xfpJMb18wObUsAIYDrB7wRmI_faHlGJSwW5C_g/viewform";
+    const FIELD_ID = "entry.1049095584";
+
+    if (!tool) {
+      document.getElementById("msg").innerHTML =
+        "❌ Brak numeru narzędzia<br>Scan QR z narzędzia";
+    } else {
+      const target =
+        FORM_URL + "?" + FIELD_ID + "=" + encodeURIComponent(tool);
+
+      // 🔥 NAJSZYBSZY I NAJSTABILNIEJSZY REDIRECT
+      window.location.href = target;
+
+      // 🔁 FALLBACK (якщо браузер блокує auto-redirect)
+      setTimeout(() => {
+        document.getElementById("msg").innerHTML =
+          'Jeśli nie nastąpiło automatycznie:<br>' +
+          '<a href="' + target + '">OTWÓRZ FORMULARZ</a>';
+      }, 1200);
+    }
   </script>
+
 </body>
 </html>
