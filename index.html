@@ -2,22 +2,17 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>QR redirect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TEST QR</title>
 </head>
-<body style="font-family:Arial;text-align:center;margin-top:40px">
-  ⏳ Перенаправлення, зачекайте…
+<body>
+  <h1>GITHUB PAGES DZIAŁA</h1>
+  <p id="out"></p>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const tool = params.get("tool");
-
-    if (tool) {
-      window.location.href =
-        "https://script.google.com/macros/s/AKfycbz-fwVW5qVOt7d-5AFFhQinIQT2fNB426yVmwLzWBRNc3G9xbmp6wii5lv0VwnHUcsX/exec?tool=" + tool;
-    } else {
-      document.body.innerHTML =
-        "<h2>❌ Немає номера інструмента</h2>";
-    }
+    const p = new URLSearchParams(window.location.search);
+    document.getElementById("out").innerText =
+      "tool = " + p.get("tool");
   </script>
 </body>
 </html>
