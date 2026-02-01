@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>QR redirect</title>
+</head>
+<body style="font-family:Arial;text-align:center;margin-top:40px">
+  ⏳ Перенаправлення, зачекайте…
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const tool = params.get("tool");
+
+    if (tool) {
+      window.location.href =
+        "https://script.google.com/macros/s/AKfycbxZ-y7OHbfyQSmK6rJ0NnqzLJJIM600tdQ9LbF3R6GvUtR7YnDTJ4BO5IIMMn9cW/exec?tool=" + tool;
+    } else {
+      document.body.innerHTML =
+        "<h2>❌ Немає номера інструмента</h2>";
+    }
+  </script>
+</body>
+</html>
